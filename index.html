@@ -1,0 +1,66 @@
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<!doctype html>
+<html dir="ltr" lang="cs">
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="jmacura 2014-2016">
+	<meta name="robots" content="index, follow">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<title>LinkedMap -- DBpedia and Wikidata visualizations</title>
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" type="text/css" media="all">
+	<link rel="stylesheet" href="styles.css" type="text/css" media="all">
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="linkedmap.js" charset="utf-8"></script>
+</head>
+
+<body lang="cs">
+<main>
+<div id="map"></div>
+
+<aside>
+<div id="content">
+	<h1>LinkedMap</h1>
+	<p>This web-map-app was created as a part of the thesis <em>Comparison of Wikidata and DBpedia Projects as Spatial Data Sources</em> <a href="#" onclick="aboutHider();" class="hidden" style="display: inline;"> ... <em>more</em></a><span class="hidden">at <a href="http://fav.zcu.cz">Faculty of Applied Sciences</a>, <a href="http://zcu.cz">UWB</a>.
+	The point of this geoapp is to present some ways, how to mine spatial data from <a href="http://wikidata.org">Wikidata</a> and <a href="http://dbpedia.org">DBpedia</a> projects.
+	For more information about the projects themself and spatial data they contain, please refer the thesis itself. <a href="#" onclick="aboutHider();"><em>less</em></a></span></p>
+	<h2>REST API</h2>
+	<button onclick="aroundQuery();">Items AROUND given coordinates</button> from Wikidata<br>
+	<h2>SPARQL endpoints</h2>
+	<button onclick="wdQuery();">Cities with female mayor</button> from Wikidata<br>
+	<button onclick="dbpQuery();">Birthplaces of Nobel laureates</button> from DBpedia
+	<div id="info-block"><p>&nbsp;<p></div>
+	<footer>
+		<div class="logo">
+			<img src="logo.svg" alt="author's logo">
+		</div>
+		<div class="credits">
+			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a><br>
+			This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>
+			and the source code is licensed under a <a rel="license" href="https://www.mozilla.org/en-US/MPL/2.0/">Mozilla Public License Version 2.0</a>.
+			<p>Author: Jan Macura, 2014–2016</p>
+			<p>University of West Bohemia, <a href="http://www.fav.zcu.cz/en">Faculty of Applied Sciences</a></p>
+		</div>
+	</footer>
+</div>
+</aside>
+
+<script>
+if (L.Browser.ie6) {
+	alert('Internet Explorer 6 is not supported.');
+}
+
+var map = L.map('map').setView([49.77, 13.38], 12);
+L.tileLayer('http://{s}.tiles.mapbox.com/v3/yjm.j5j87g72/{z}/{x}/{y}.png', {
+	attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+	maxZoom: 18
+}).addTo(map);
+controller.addTo(map);
+
+</script>
+
+</main>
+</body>
+</html>
